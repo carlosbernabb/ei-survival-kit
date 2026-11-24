@@ -142,7 +142,7 @@ LEVELS[5] = (function () {
         });
         release.disabled = true;
         row.appendChild(release);
-        return ctx.panel(t.forgiveTitle, [ctx.lead(t.forgiveText), holder, message, row]);
+        return ctx.panel(t.forgiveTitle, [ctx.activity(), ctx.lead(t.forgiveText), holder, message, row]);
       }
     ]);
   }

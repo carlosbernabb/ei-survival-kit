@@ -98,7 +98,7 @@ LEVELS[6] = (function () {
           Store.setMood("after", picked.value, "");
           ctx.next();
         });
-        return ctx.panel(t.afterTitle, [ctx.lead(t.afterText), picker, error, ctx.el("div", { class: "btn-row" }, next)]);
+        return ctx.panel(t.afterTitle, [ctx.activity(), ctx.lead(t.afterText), picker, error, ctx.el("div", { class: "btn-row" }, next)]);
       },
 
       // paso 2: actividad, confianza del 1 al 5 en cada dominio
@@ -123,6 +123,7 @@ LEVELS[6] = (function () {
           ]);
         }
         return ctx.panel(t.slidersTitle, [
+          ctx.activity(),
           ctx.lead(t.slidersText),
           list,
           ctx.el("div", { class: "btn-row" }, ctx.nextButton(ui.save, function () {

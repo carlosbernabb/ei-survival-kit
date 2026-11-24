@@ -191,7 +191,8 @@ var UI = (function () {
 
   function levelBadges(level) {
     return el("div", { class: "badge-list" }, [
-      level.application ? badge("application", level.topic) : null
+      level.application ? badge("application", level.topic) : null,
+      level.activity ? badge("activity", level.activity) : null
     ]);
   }
 
@@ -210,7 +211,8 @@ var UI = (function () {
 
     return el("article", { class: classes }, [
       el("div", { class: "tool-card-top" }, [
-        el("div", { class: "tool-card-icon", svg: unlocked ? icon(level.icon) : icon("lock") })
+        el("div", { class: "tool-card-icon", svg: unlocked ? icon(level.icon) : icon("lock") }),
+        el("span", { class: "tool-card-unit", text: level.unit })
       ]),
       el("div", { class: "tool-card-body" }, [
         el("h3", { class: "tool-card-name", text: name }),

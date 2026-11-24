@@ -67,6 +67,7 @@ LEVELS[1] = (function () {
           }));
         }
         return ctx.panel(t.nowTitle, [
+          ctx.activity(),
           ctx.lead(t.nowText),
           grid,
           ctx.el("div", { class: "btn-row" }, next)
@@ -110,6 +111,7 @@ LEVELS[1] = (function () {
         refresh();
 
         return ctx.panel(t.valuesTitle, [
+          ctx.activity(),
           ctx.lead(t.valuesText),
           grid,
           counter,

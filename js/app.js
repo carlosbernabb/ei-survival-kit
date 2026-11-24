@@ -170,6 +170,8 @@ var App = (function () {
     show([
       el("div", { class: "panel panel-narrow" }, [
         el("h1", { text: c.title }),
+        UI.badge("activity", c.title),
+        el("div", { style: "height: 14px" }),
         form
       ])
     ]);
@@ -293,8 +295,10 @@ var App = (function () {
       el("span", { class: "compartment-icon", svg: UI.icon(level.icon) }),
       el("span", { class: "compartment-level", text: h.levelWord + " " + level.id }),
       el("span", { class: "compartment-title", text: level.title }),
+      el("span", { class: "compartment-topic", text: level.unit + ": " + level.topic }),
       el("span", { class: "badge-list" }, [
-        level.application ? UI.badge("application") : null
+        level.application ? UI.badge("application") : null,
+        level.activity ? UI.badge("activity") : null
       ]),
       el("span", { class: "compartment-status", text: done ? h.statusDone : h.statusReady })
     ]);

@@ -103,17 +103,20 @@ var CONTENT = {
   },
 
   badges: {
-    application: "EI application"
+    application: "EI application",
+    activity: "Activity for yourself"
   },
 
   levels: [
     {
       id: 1,
+      unit: "Unit 1",
       title: "Who am I?",
       topic: "Self-awareness",
       color: "orange",
       icon: "mirror",
       application: true,
+      activity: "Feelings check and values",
       tool: {
         name: "Name it to tame it",
         takeaway: "When I put a precise name to what I feel, it gets easier to calm down and choose my next step."
@@ -121,11 +124,13 @@ var CONTENT = {
     },
     {
       id: 2,
+      unit: "Unit 2",
       title: "Hold the Line",
       topic: "Self-control",
       color: "cyan",
       icon: "breath",
       application: true,
+      activity: "4-step reset practice",
       tool: {
         name: "The 4-step reset",
         takeaway: "Pause, breathe, name the emotion, then choose how I want to respond."
@@ -133,11 +138,13 @@ var CONTENT = {
     },
     {
       id: 3,
+      unit: "Unit 3",
       title: "Climb Down the Ladder",
       topic: "Empathy",
       color: "yellow",
       icon: "ladder",
       application: true,
+      activity: "",
       tool: {
         name: "Back to the data",
         takeaway: "Before I judge someone, I climb down the ladder and check what I actually saw and heard."
@@ -145,11 +152,13 @@ var CONTENT = {
     },
     {
       id: 4,
+      unit: "Unit 4",
       title: "Say It Right",
       topic: "Assertive communication",
       color: "green",
       icon: "speech",
       application: true,
+      activity: "",
       tool: {
         name: "Facts and feelings",
         takeaway: "I share what happened and how I feel, and I leave the judgments out."
@@ -157,11 +166,13 @@ var CONTENT = {
     },
     {
       id: 5,
+      unit: "Unit 5",
       title: "Unlearn to Learn",
       topic: "Humility and forgiveness",
       color: "red",
       icon: "backpack",
       application: true,
+      activity: "Forgiveness exercise",
       tool: {
         name: "Unlearn card",
         takeaway: "I can admit when I am wrong, drop what weighs me down and choose to forgive."
@@ -169,11 +180,13 @@ var CONTENT = {
     },
     {
       id: 6,
+      unit: "Unit 6",
       title: "Measure Your Success",
       topic: "Measuring success",
       color: "steel",
       icon: "chart",
       application: false,
+      activity: "Mood check-in and my EI map",
       tool: {
         name: "My EI map",
         takeaway: "Checking in with myself shows me how far I have come and what to practice next."

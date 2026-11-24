@@ -204,6 +204,7 @@ LEVELS[2] = (function () {
         refresh();
 
         return ctx.panel(t.yourTitle, [
+          ctx.activity(),
           ctx.lead(t.yourText),
           ctx.el("p", { class: "slot-label", text: t.triggerLabel }),
           triggers,

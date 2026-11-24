@@ -26,7 +26,7 @@ var Mission = (function () {
       el("div", { class: "mission c-" + level.color }, [
         el("div", { class: "mission-head" }, [
           el("a", { href: "#hub", class: "mission-back", text: "← " + ui.back }),
-          el("p", { class: "mission-kicker", text: CONTENT.hub.levelWord + " " + level.id }),
+          el("p", { class: "mission-kicker", text: CONTENT.hub.levelWord + " " + level.id + " · " + level.unit + ": " + level.topic }),
           el("h1", { text: level.title }),
           UI.levelBadges(level)
         ]),
@@ -77,6 +77,10 @@ var Mission = (function () {
           el("h2", { class: "mission-title", tabindex: "-1", text: title }),
           children
         ]);
+      },
+      // etiqueta de actividad para los pasos donde la persona usa sus propias respuestas
+      activity: function () {
+        return el("div", { class: "mission-activity" }, UI.badge("activity", level.activity));
       },
       lead: function (text) {
         return el("p", { class: "lead", text: text });

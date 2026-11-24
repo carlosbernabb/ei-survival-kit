@@ -1,0 +1,318 @@
+/* revelacion de carta cuando se gana una herramienta */
+
+.reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(28, 31, 35, 0.96) 0, rgba(6, 7, 8, 0.98) 70%);
+  animation: reveal-fade 0.3s ease both;
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* rayos de luz que giran detras de la carta */
+.reveal-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160vmax;
+  height: 160vmax;
+  margin: -80vmax 0 0 -80vmax;
+  background: repeating-conic-gradient(var(--c) 0deg 6deg, transparent 6deg 22deg);
+  -webkit-mask-image: radial-gradient(circle, #000 0, transparent 38%);
+  mask-image: radial-gradient(circle, #000 0, transparent 38%);
+  opacity: 0.18;
+  animation: rays-spin 16s linear infinite;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.is-open .reveal-rays {
+  opacity: 0.45;
+  animation-duration: 6s;
+}
+
+@keyframes rays-spin {
+  to { transform: rotate(360deg); }
+}
+
+.reveal-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reveal.is-open .reveal-flash {
+  animation: reveal-flash 0.7s ease 0.25s both;
+}
+
+@keyframes reveal-flash {
+  0% { opacity: 0; }
+  25% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+.reveal-center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* letrero que salta cuando se voltea la carta */
+.reveal-new {
+  margin: 0;
+  min-height: 1.1em;
+  font-family: var(--font-heavy);
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--c);
+  -webkit-text-stroke: 2px #000;
+  paint-order: stroke fill;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.reveal.is-open .reveal-new {
+  animation: new-pop 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) 0.45s both;
+}
+
+@keyframes new-pop {
+  0% { opacity: 0; transform: scale(0) rotate(-8deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-3deg); }
+}
+
+.reveal-holder {
+  position: relative;
+}
+
+/* la carta que se voltea */
+.reveal-card {
+  display: block;
+  width: 270px;
+  height: 380px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  perspective: 1200px;
+  opacity: 0;
+  transform: translateY(-110vh) rotate(-14deg) scale(0.6);
+}
+
+.reveal.is-in .reveal-card {
+  animation: card-drop 0.8s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+@keyframes card-drop {
+  0% { opacity: 1; transform: translateY(-110vh) rotate(-14deg) scale(0.6); }
+  70% { opacity: 1; transform: translateY(24px) rotate(3deg) scale(1.06); }
+  100% { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+}
+
+.reveal.is-ready .reveal-card {
+  animation: card-wiggle 0.9s ease-in-out infinite;
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes card-wiggle {
+  0%, 100% { transform: rotate(0) scale(1); }
+  20% { transform: rotate(-3deg) scale(1.03); }
+  40% { transform: rotate(3deg) scale(1.03); }
+  60% { transform: rotate(-2deg) scale(1.01); }
+}
+
+.reveal.is-open .reveal-card {
+  animation: card-burst 0.7s ease both;
+  opacity: 1;
+  transform: none;
+  cursor: default;
+}
+
+@keyframes card-burst {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); }
+  100% { transform: scale(1.08); }
+}
+
+.reveal-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.reveal.is-open .reveal-inner {
+  transform: rotateY(180deg);
+}
+
+.reveal-face {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.reveal-front {
+  transform: rotateY(180deg);
+}
+
+.reveal-front .tool-card {
+  height: 100%;
+  min-height: 0;
+  box-shadow: 0 0 40px var(--c), var(--shadow);
+}
+
+/* reverso de la carta */
+.reveal-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 6px solid transparent;
+  border-radius: 14px;
+  background:
+    linear-gradient(160deg, #23272c, #111316) padding-box,
+    var(--hazard) border-box;
+  box-shadow: 0 0 0 2px #000, 0 18px 40px rgba(0, 0, 0, 0.7);
+}
+
+.reveal.is-ready .reveal-back {
+  animation: back-glow 0.9s ease-in-out infinite;
+}
+
+@keyframes back-glow {
+  0%, 100% { box-shadow: 0 0 0 2px #000, 0 0 10px var(--c); }
+  50% { box-shadow: 0 0 0 2px #000, 0 0 46px var(--c); }
+}
+
+.reveal-back-icon {
+  width: 110px;
+  height: 110px;
+}
+
+.reveal-back-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.reveal-back-mark {
+  font-family: var(--font-heavy);
+  font-size: 5rem;
+  line-height: 0.9;
+  color: var(--c);
+}
+
+.reveal-back-label {
+  font-family: var(--font-heavy);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* chispas */
+.reveal-sparks {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.reveal-sparks span {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--c);
+  opacity: 0;
+}
+
+.reveal-sparks span:nth-child(even) {
+  width: 8px;
+  height: 8px;
+  background: #fff;
+}
+
+.reveal.is-open .reveal-sparks span {
+  animation: spark 0.9s ease-out 0.3s both;
+}
+
+@keyframes spark {
+  0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(1); }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(calc(-1 * var(--d) - 140px)) scale(0.3); }
+}
+
+.reveal-hint {
+  margin: 0;
+  font-family: var(--font-heavy);
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0;
+}
+
+.reveal.is-ready .reveal-hint {
+  animation: hint-blink 1s ease-in-out infinite;
+}
+
+.reveal.is-open .reveal-hint {
+  display: none;
+}
+
+@keyframes hint-blink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.reveal-actions {
+  justify-content: center;
+  margin-top: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reveal.is-done .reveal-actions {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+@media (max-width: 560px), (max-height: 640px) {
+  .reveal-card {
+    width: 220px;
+    height: 310px;
+  }
+
+  .reveal-back-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .reveal-back-mark {
+    font-size: 3.6rem;
+  }
+}

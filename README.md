@@ -42,16 +42,13 @@ All answers are saved with localStorage on the same device. Nothing is sent to a
 - Phases 2 to 4: 6 short missions, about 90 seconds each. Done.
 - Phase 5: references, QA and deploy instructions. Done.
 
-## How to publish it for free on GitHub Pages
+## Live link
 
-1. Sign in at github.com and click New repository. Name it `ei-survival-kit`, make it Public and create it.
-2. In the new repository click Add file, then Upload files.
-3. Drag everything inside this folder: `index.html`, `README.md` and the folders `css`, `data`, `img`, `js` and `audio`. Click Commit changes.
-4. Go to Settings, then Pages. Under Build and deployment choose Deploy from a branch, branch `main`, folder `/ (root)`, and click Save.
-5. Wait one or two minutes and refresh the page. GitHub shows the link, it looks like `https://your-user.github.io/ei-survival-kit/`.
-6. Open the link in a private window to check that it works with no login.
+The game is published with GitHub Pages at https://carlosbernabb.github.io/ei-survival-kit/
 
-Anyone with the link can open the game, no account needed.
+Anyone with the link can open it, no account needed. Every push to the `main` branch updates the page in a minute or two.
+
+The `audio` folder is not published, it is listed in `.gitignore`. Without it the intro plays with no sound.
 
 ## QA checklist
 
